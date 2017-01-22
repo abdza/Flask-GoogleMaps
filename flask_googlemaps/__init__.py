@@ -34,6 +34,7 @@ class Map(object):
                  cluster=False,
                  cluster_imagepath=DEFAULT_CLUSTER_IMAGE_PATH,
                  cluster_gridsize=60,
+                 client_url=None,
                  **kwargs):
         """Builds the Map properties"""
         self.cls = cls
@@ -65,6 +66,7 @@ class Map(object):
         self.cluster = cluster
         self.cluster_imagepath = cluster_imagepath
         self.cluster_gridsize = cluster_gridsize
+        self.client_url = client_url
 
     def build_markers(self, markers):
         if not markers:
