@@ -21,11 +21,21 @@
 
 <script type="text/javascript">
     var {{gmap.varname}} = null;
+{% if gmap.markers|length %}
     var {{gmap.varname}}_markers = [];
+{% endif %}
+{% if gmap.rectangles|length %}
     var {{gmap.varname}}_rectangles = [];
+{% endif %}
+{% if gmap.circles|length %}
     var {{gmap.varname}}_circles = [];
+{% endif %}
+{% if gmap.polygons|length %}
     var {{gmap.varname}}_polygons = [];
+{% endif %}
+{% if gmap.polylines|length %}
     var {{gmap.varname}}_polylines = [];
+{% endif %}
     var prev_infowindow_{{gmap.varname}} = null;
 
     function initialize_{{gmap.varname}}() {
@@ -44,6 +54,7 @@
             fullscreenControl: {% if gmap.fullscreen_control %}true{% else %}false{% endif %}
         });
 
+	{% if gmap.markers|length %}
         // add gmap markers
         var raw_markers = {{gmap.markers|tojson|safe}};
         for(i=0; i<{{gmap.markers|length}};i++) {
@@ -63,7 +74,9 @@
                 );
            }
         }
+	{% endif %}
 
+	{% if gmap.rectangles|length %}
         // add rectangles
         var raw_rectangles = {{ gmap.rectangles|tojson|safe }};
         for(i = 0; i < {{ gmap.rectangles|length }}; i++) {
@@ -90,7 +103,9 @@
                 );
            }
         }
+	{% endif %}
 
+	{% if gmap.circles|length %}
         // add circles
         var raw_circles = {{ gmap.circles|tojson|safe }};
         for(i = 0; i < {{ gmap.circles|length }}; i++) {
@@ -117,7 +132,9 @@
                 );
            }
         }
+	{% endif %}
 
+	{% if gmap.polygons|length %}
         // add polygons
         var raw_polygons = {{ gmap.polygons|tojson|safe }};
         for(i = 0; i < {{ gmap.polygons|length }}; i++) {
@@ -141,7 +158,9 @@
                 );
            }
         }
+	{% endif %}
     
+	{% if gmap.polylines|length %}
         // add polylines
         var raw_polylines = {{ gmap.polylines|tojson|safe }};
         for(i = 0; i < {{ gmap.polylines|length }}; i++) {
@@ -163,6 +182,7 @@
                 );
            }
         }
+	{% endif %}
 
         {% if gmap.cluster %}
     	    var markerCluster = new MarkerClusterer({{gmap.varname}}, {{gmap.varname}}_markers, {'imagePath': "{{gmap.cluster_imagepath}}", 'gridSize': {{gmap.cluster_gridsize}}});
