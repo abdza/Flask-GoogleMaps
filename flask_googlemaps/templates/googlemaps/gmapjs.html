@@ -73,6 +73,17 @@
                         getInfoCallback({{gmap.varname}}, raw_markers[i].infobox)
                 );
            }
+
+	   {% if gmap.clickCallback %}
+	   if(raw_markers[i].clickCallback)
+	   {
+                google.maps.event.addListener(
+                        {{gmap.varname}}_markers[i],
+                        'click',
+			{{ gmap.clickCallback}}(raw_markers[i].clickCallback)
+                );
+	   }
+	   {% endif %}
         }
 	{% endif %}
 

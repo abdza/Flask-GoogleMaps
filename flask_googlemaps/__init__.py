@@ -16,6 +16,7 @@ class Map(object):
                  zoom=13,
                  maptype="ROADMAP",
                  markers=None,
+                 clickCallback=None,
                  varname='map',
                  style="height:300px;width:300px;margin:0;",
                  cls="map",
@@ -44,6 +45,7 @@ class Map(object):
         self.zoom = zoom
         self.maptype = maptype
         self.markers = []
+        self.clickCallback = clickCallback
         self.build_markers(markers)
         self.rectangles = []
         self.build_rectangles(rectangles)
