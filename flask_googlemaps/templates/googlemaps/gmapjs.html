@@ -61,7 +61,8 @@
             {{gmap.varname}}_markers[i] = new google.maps.Marker({
                 position: new google.maps.LatLng(raw_markers[i].lat, raw_markers[i].lng),
                 map: {{gmap.varname}},
-                icon: raw_markers[i].icon,
+		icon: raw_markers[i].icon,
+		detailview: raw_markers[i].detailview ? raw_markers[i].detailview : null,
                 title: raw_markers[i].title ? raw_markers[i].title : null
             });
 
